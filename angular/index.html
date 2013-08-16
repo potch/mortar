@@ -5,12 +5,45 @@
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1">
     <title>List Detail Template</title>
     <link rel="stylesheet" href="http://mozilla.github.io/brick/dist/brick.css">
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+    <style>
+      x-card {
+        padding: 1em;
+      }
+      x-layout {
+        border: 0 none;
+      }
+    </style>
   </head>
-  <body ng-app>
-    <h1>List Detail Template</h1>
-
-    <script src="bower_components/angular/angular.min.js"></script>
+  <body>
+    <x-layout>
+      <header class="header">
+        <div class="navbar navbar-inverse navbar-static-top">
+          <nav class="navbar-inner">
+            <ul class="nav navbar-nav">
+              <li><a class="navbar-brand" href="#">Title</a></li>
+              <li><a href="#/task/1">Home</a></li>
+              <li><a href="#">Link</a></li>
+              <li><a href="#">Link</a></li>
+            </ul>
+          </nav>
+        </div>
+      </header>
+      <x-deck ng-controller="DeckController">
+        <x-card card-view="home" ng-controller="MainController" card-route="/">
+          <header><h1>Home</h1></header>
+          <a href="#/task/0">Foo</a>
+        </x-card>
+        <x-card card-view="detail" ng-controller="DetailController" card-route="/task/:taskId">
+          <div>Name: {{name}}</div>
+          <div>Id: {{params.taskId}}</div>
+        </x-card>
+      </x-deck>
+    </x-layout>
     <script src="http://mozilla.github.io/brick/dist/brick.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
     <script src="media/js/angular-deck.js"></script>
+    <script src="media/js/app.js"></script>
   </body>
 </html>
